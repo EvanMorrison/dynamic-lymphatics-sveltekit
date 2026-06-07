@@ -1,0 +1,111 @@
+<script lang="ts">
+	import { resolve } from '$app/paths';
+	import Icon from '$lib/components/Icon.svelte';
+	import { PHONE, EMAIL, TRISH_PORTRAIT } from '$lib/data/site';
+	import HomeWelcome from './HomeWelcome.svelte';
+</script>
+
+<div class="home-contact">
+	<HomeWelcome />
+	<div class="flex items-start gap-8">
+		<img src={TRISH_PORTRAIT} alt="Trish Romano, CLT" class="portrait" />
+
+		<div class="flex-1">
+			<div class="contact-headline">Founder & Principal Care Provider</div>
+			<div class="contact-name">
+				<strong>Trish Romano</strong>, CLT LMT
+			</div>
+			<div class="contact-headline">
+				<table>
+					<tbody>
+						<tr>
+							<td><Icon name="call" size={18} /></td>
+							<td class="pl-3">{PHONE}</td>
+						</tr>
+						<tr>
+							<td><Icon name="mail_outline" size={18} /></td>
+							<td class="pl-3">
+								<a href="mailto:{EMAIL}">{EMAIL}</a>
+							</td>
+						</tr>
+						<tr>
+							<td><Icon name="pin_drop" size={18} /></td>
+							<td class="pl-3">224 S Main Street, Suite 205</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="pl-3">
+								Centerville, UT 84014<br />
+								Treatments by appointment only
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="mt-8 w-full">
+		Learn more about Trish on the <a href={resolve('/about')} class="text-blue-600 hover:underline">
+			About
+		</a> page
+	</div>
+</div>
+
+<style>
+	.home-contact {
+		flex-flow: wrap;
+		position: relative;
+		min-height: 500px;
+		width: 95%;
+		max-width: 1280px;
+		margin: 20px auto;
+		align-items: center;
+		justify-content: flex-start;
+
+		@media (max-width: 786px) {
+			flex-direction: column;
+			justify-content: flex-end;
+			align-content: flex-end;
+			align-items: flex-start;
+		}
+
+		@media (min-width: 768px) and (max-width: 1439px) {
+			width: 80%;
+		}
+
+		& * {
+			transition: all 0.3s ease-out;
+		}
+
+		.portrait {
+			display: block;
+			flex-basis: 150px;
+			width: 150px;
+			height: 200px;
+			border-radius: 5px;
+		}
+
+		.contact-headline {
+			font-size: 1.25em;
+			font-weight: 300;
+
+			@media (max-width: 500px) {
+				font-size: 1em;
+			}
+		}
+
+		.contact-name {
+			font-size: 3.2em;
+			line-height: 1em;
+
+			strong {
+				font-weight: 700;
+			}
+
+			@media (max-width: 500px) {
+				font-size: 1.9em;
+			}
+		}
+	}
+</style>

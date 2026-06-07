@@ -2,8 +2,13 @@ import type { StorybookConfig } from '@storybook/sveltekit';
 
 const config: StorybookConfig = {
   "stories": [
-    "../src/**/*.mdx",
-    "../src/**/*.stories.@(js|ts|svelte)"
+    // Explicitly only load Svelte CSF story files.
+    // This prevents Storybook from auto-discovering .mdx files (both the old React Configure.mdx
+    // and the app's src/content/*.mdx which are for mdsvex/SvelteKit routes, not Storybook).
+    {
+      directory: '../src',
+      files: '**/*.stories.@(js|ts|svelte)',
+    },
   ],
   "addons": [
     "@storybook/addon-svelte-csf",

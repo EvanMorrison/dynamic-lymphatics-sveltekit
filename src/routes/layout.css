@@ -1,3 +1,76 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+/*
+  Design tokens ported from original Emotion theme (AppStyles.js + main.style.js).
+  Original palette:
+    primary: #336633
+    primaryLt: rgb(200, 250, 200)
+    logoBlue: #43C7ED
+    logoOrange: #FF7D09
+    logoGreen: #66C368
+    divider: #083
+  Fonts: Bilbo Swash Caps (titles), Arimo (body + headings)
+  Many components used max-w ~1280-1440, organic border-radius curves, etc.
+*/
+
+@theme {
+	--color-dl-primary: #336633;
+	--color-dl-primary-lt: #c8fac8;
+	--color-dl-green: #66c368;
+	--color-dl-blue: #43c7ed;
+	--color-dl-orange: #ff7d09;
+	--color-dl-divider: #083;
+
+	/* Expose original title/body fonts (loaded in app.html) */
+	--font-dl-title: 'Bilbo Swash Caps', cursive;
+	--font-dl-body: 'Arimo', system-ui, sans-serif;
+
+	/* Custom spacing values for exact pixel dimensions used in components
+	   (avoids arbitrary [250px] etc. that trigger Tailwind warnings) */
+	--spacing-150: 150px;
+	--spacing-250: 250px;
+}
+
+/* Base resets and legacy-friendly styles (from original globalStyle) */
+:root {
+	font-family: var(--font-dl-body);
+}
+
+p {
+	margin: 1em 0;
+}
+
+p ~ ul {
+	margin-left: 30px;
+}
+
+/* Active nav link treatment (original used .active on some lists) */
+.active {
+	border-bottom: 1px solid color-mix(in srgb, var(--color-dl-primary) 70%, transparent);
+}
+
+/*
+  Material Symbols Rounded — robust fallback rules.
+  The Google Fonts link provides the font. These rules ensure the correct family
+  and ligature support even if the external stylesheet is slow or the subset is used.
+*/
+.material-symbols-rounded {
+	font-family: 'Material Symbols Rounded' !important;
+	font-weight: normal;
+	font-style: normal;
+	font-size: inherit;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: 'liga';
+	-moz-font-feature-settings: 'liga';
+	font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
