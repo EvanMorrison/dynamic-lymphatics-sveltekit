@@ -16,11 +16,7 @@
 
 <!-- Overlay -->
 {#if open}
-	<div
-		class="fixed inset-0 z-40 bg-black/50"
-		onclick={closeDrawer}
-		role="presentation"
-	></div>
+	<div class="fixed inset-0 z-40 bg-black/50" onclick={closeDrawer} role="presentation"></div>
 {/if}
 
 <!-- Drawer panel -->

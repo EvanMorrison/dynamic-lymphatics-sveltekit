@@ -42,11 +42,11 @@
 	</div>
 </div>
 
-<div class="mt-8 w-full">
+<p class="mt-8 w-full">
 	Learn more about Trish on the <a href={resolve('/about')} class="text-blue-600 hover:underline">
 		About
 	</a> page
-</div>
+</p>
 
 <style>
 	.portrait {

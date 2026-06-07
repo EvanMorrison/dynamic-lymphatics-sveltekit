@@ -6,8 +6,9 @@
 	 *
 	 * Position prop: 0 (top of page) → 1 (scrolled past threshold).
 	 */
-	import { page } from '$app/stores';
-	import { nav, type NavItem, PHONE, SITE_NAME, TAGLINE } from '$lib/data/site';
+	import { page } from '$app/state';
+	import { nav, PHONE, SITE_NAME, TAGLINE } from '$lib/data/site';
+	import { resolve } from '$app/paths';
 	import Icon from './Icon.svelte';
 	import Drawer from './Drawer.svelte';
 
@@ -17,12 +18,8 @@
 	const isScrolled = $derived(clamped >= 1);
 
 	// Colors driven by scroll position (match original theme behavior)
-	const navBg = $derived(
-		isScrolled ? 'rgba(51, 102, 51, 0.7)' : 'transparent'
-	);
-	const navShadow = $derived(
-		isScrolled ? '0 2px 4px rgba(51, 85, 51, 1)' : 'none'
-	);
+	const navBg = $derived(isScrolled ? 'rgba(51, 102, 51, 0.7)' : 'transparent');
+	const navShadow = $derived(isScrolled ? '0 2px 4px rgba(51, 85, 51, 1)' : 'none');
 	const navTextClass = $derived(isScrolled ? 'text-white' : 'text-dl-primary');
 	const phoneClass = $derived(isScrolled ? 'text-white/90' : 'text-dl-primary/80');
 
@@ -62,9 +59,9 @@
 	}
 
 	// Active link logic (approximates original behavior)
-	const currentPath = $derived($page.url.pathname);
+	const currentPath = $derived(page.url.pathname);
 
-	function isActive(item: NavItem): boolean {
+	function isActive(item: { path: string; children?: readonly unknown[] | null }): boolean {
 		if (currentPath === item.path) return true;
 		if (item.children && currentPath.startsWith(item.path + '/')) return true;
 		// Also highlight parent when on a child (e.g. /services/xxx)
@@ -132,12 +129,22 @@
 			</div>
 		</div>
 
+		<!-- Mobile/narrow view Call text - left aligned to match old site layout.
+		     Hidden below 460px and only shown after the page has been scrolled (matching original behavior). -->
+		<div
+			class={`text-sm transition-all duration-200 max-[460px]:hidden lg:hidden ${phoneClass}`}
+			class:opacity-0={!isScrolled}
+			class:opacity-100={isScrolled}
+		>
+			Call: {PHONE}
+		</div>
+
 		<!-- Right side -->
 		<div class="flex items-start gap-2">
 			<!-- Desktop: Call stacked above the horizontal nav menu (only after scrolling, per original) -->
-			<div class="hidden md:flex flex-col items-end">
-				<div 
-					class={`text-[0.9rem] leading-tight mb-px transition-all duration-200 ${phoneClass}`}
+			<div class="hidden flex-col items-end lg:flex">
+				<div
+					class={`mb-px text-[0.9rem] leading-tight transition-all duration-200 ${phoneClass}`}
 					class:opacity-0={!isScrolled}
 					class:opacity-100={isScrolled}
 					class:mb-0={!isScrolled}
@@ -157,7 +164,7 @@
 								onmouseleave={handleMouseLeave}
 							>
 								<a
-									href={item.path}
+									href={resolve(item.path)}
 									class={`flex items-center gap-1 rounded px-3 py-1.5 transition-colors hover:bg-dl-primary-lt/30 ${isActive(item) ? (isScrolled ? 'bg-white/20' : 'bg-dl-primary-lt/50') : ''}`}
 									onclick={handleNavClick}
 								>
@@ -180,7 +187,7 @@
 											<!-- Parent link -->
 											<li>
 												<a
-													href={item.path}
+													href={resolve(item.path)}
 													class="flex items-center gap-2 px-4 py-2 hover:bg-dl-primary-lt/60"
 													onclick={handleNavClick}
 												>
@@ -188,11 +195,15 @@
 													<span class="font-medium">{item.label}</span>
 												</a>
 											</li>
-											{#each item.children as child (child.path)}
+											{#each item.children ?? [] as child (child.path)}
 												<li>
 													<a
-														href={child.path}
-														class="flex items-center gap-2 px-4 py-1.5 pl-8 text-sm hover:bg-dl-primary-lt/40 {isActive(child) ? 'font-medium text-dl-green' : ''}"
+														href={resolve(child.path)}
+														class="flex items-center gap-2 px-4 py-1.5 pl-8 text-sm hover:bg-dl-primary-lt/40 {isActive(
+															child
+														)
+															? 'font-medium text-dl-green'
+															: ''}"
 														onclick={handleNavClick}
 													>
 														<Icon name={child.icon} size={16} />
@@ -223,7 +234,7 @@
 </nav>
 
 <!-- Mobile Drawer -->
-<Drawer open={isDrawerOpen} closeDrawer={closeDrawer}>
+<Drawer open={isDrawerOpen} {closeDrawer}>
 	<!-- Drawer header -->
 	<div class="flex items-center bg-dl-primary/80 p-3 text-white">
 		<div class="flex items-center gap-3">
@@ -237,8 +248,12 @@
 			{#each nav as item (item.path)}
 				<li class="mb-0.5">
 					<a
-						href={item.path}
-						class="flex items-center gap-2 rounded px-3 py-2 hover:bg-dl-primary-lt/40 {isActive(item) ? 'font-medium text-dl-green' : ''}"
+						href={resolve(item.path)}
+						class="flex items-center gap-2 rounded px-3 py-2 hover:bg-dl-primary-lt/40 {isActive(
+							item
+						)
+							? 'font-medium text-dl-green'
+							: ''}"
 						onclick={handleNavClick}
 					>
 						<Icon name={item.icon} size={20} />
@@ -250,8 +265,12 @@
 							{#each item.children as child (child.path)}
 								<li>
 									<a
-										href={child.path}
-										class="flex items-center gap-2 rounded py-1.5 pl-2 text-[0.95em] hover:bg-dl-primary-lt/30 {isActive(child) ? 'font-medium text-dl-green' : ''}"
+										href={resolve(child.path)}
+										class="flex items-center gap-2 rounded py-1.5 pl-2 text-[0.95em] hover:bg-dl-primary-lt/30 {isActive(
+											child
+										)
+											? 'font-medium text-dl-green'
+											: ''}"
 										onclick={handleNavClick}
 									>
 										<Icon name={child.icon} size={16} />

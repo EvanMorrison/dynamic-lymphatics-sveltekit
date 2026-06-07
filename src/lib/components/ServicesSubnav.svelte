@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import { services } from '$lib/data/site';
 
-	const currentPath = $derived($page.url.pathname);
+	const currentPath = $derived(page.url.pathname);
 </script>
 
 <nav>

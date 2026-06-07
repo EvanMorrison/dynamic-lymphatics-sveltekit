@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import Section from '$lib/components/Section.svelte';
 	import Content from '../content/appointments.mdx';
-	import Icon from '$lib/components/Icon.svelte';
 
 	let message = $state({
 		name: '',
@@ -44,7 +42,7 @@
 	<Content />
 
 	{#if status === 'success'}
-		<div class="mt-6 p-4 bg-green-50 border border-green-600 rounded">
+		<div class="mt-6 rounded border border-green-600 bg-green-50 p-4">
 			<p class="font-medium">Message sent successfully!</p>
 			<p>A confirmation was sent to you at {message.email}. We will respond soon. Thank you.</p>
 			<button class="mt-2 underline" onclick={resetForm}>Send another message</button>
@@ -54,8 +52,10 @@
 			<p class="text-red-600">There was a problem sending the message. Please try again.</p>
 		{/if}
 
-		<form onsubmit={handleSubmit} class="mt-6 max-w-xl border rounded p-6">
-			<div class="mb-4 text-lg font-medium bg-dl-green/70 text-white px-4 py-2 rounded-t -mx-6 -mt-6">
+		<form onsubmit={handleSubmit} class="mt-6 max-w-xl rounded border p-6">
+			<div
+				class="-mx-6 -mt-6 mb-4 rounded-t bg-dl-green/70 px-4 py-2 text-lg font-medium text-white"
+			>
 				Send a message here:
 			</div>
 
@@ -103,7 +103,7 @@
 			<button
 				type="submit"
 				disabled={sending}
-				class="mt-4 px-6 py-2 bg-dl-green/70 text-white rounded disabled:opacity-50"
+				class="mt-4 rounded bg-dl-green/70 px-6 py-2 text-white disabled:opacity-50"
 			>
 				{sending ? 'Sending...' : 'Send'}
 			</button>

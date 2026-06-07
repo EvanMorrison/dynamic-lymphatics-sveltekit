@@ -14,11 +14,7 @@
 		<AboutSubnav />
 	{/snippet}
 
-	<img
-		src={TRISH_PORTRAIT}
-		alt="Trish Romano, CLT"
-		class="float-left mr-5 mb-2 w-[170px] md:w-30"
-	/>
+	<img src={TRISH_PORTRAIT} alt="Trish Romano, CLT" class="float-left mr-5 mb-2 w-170" />
 
 	<Content />
 </Section>

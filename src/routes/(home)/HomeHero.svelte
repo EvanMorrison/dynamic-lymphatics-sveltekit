@@ -98,6 +98,7 @@
 			}
 
 			h2 {
+				font-size: 24px;
 				text-align: center;
 				font-weight: 300;
 				color: #ffffff;
