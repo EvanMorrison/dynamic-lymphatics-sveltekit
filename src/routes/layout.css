@@ -30,21 +30,41 @@
 	/* Custom spacing values for exact pixel dimensions used in components
 	   (avoids arbitrary [250px] etc. that trigger Tailwind warnings) */
 	--spacing-150: 150px;
+	--spacing-170: 170px;
 	--spacing-250: 250px;
 }
 
 /* Base resets and legacy-friendly styles (from original globalStyle) */
 :root {
 	font-family: var(--font-dl-body);
+	font-size: 16px;
 }
 
 p {
+	font-family: var(--font-dl-body);
+	font-size: 1.15rem;
+	line-height: 1.5em;
+	font-weight: 400;
 	margin: 1em 0;
+	max-width: 38em;
+	text-align: justify;
+}
+
+@media screen and (max-width: 667px) {
+	p {
+		text-align: left;
+	}
 }
 
 p ~ ul {
 	margin-left: 30px;
 }
+
+/*
+  Content typography for .section-body (the main body copy on services/about subpages).
+  This matches the old site's default text size for section paragraphs: 1.15em (18.4px at 16px base).
+  Kept global so it applies to MDX-rendered <p>, <ul>, <h2>, <a> inside the section content.
+*/
 
 /* Active nav link treatment (original used .active on some lists) */
 .active {

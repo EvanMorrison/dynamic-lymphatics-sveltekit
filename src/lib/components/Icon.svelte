@@ -23,9 +23,7 @@
 
 	const isOutline = $derived(name.endsWith('_outline'));
 	const ligature = $derived(isOutline ? name.slice(0, -8) : name);
-	const fontVariationSettings = $derived(
-		isOutline ? "'FILL' 0" : "'FILL' 1"
-	);
+	const fontVariationSettings = $derived(isOutline ? "'FILL' 0" : "'FILL' 1");
 </script>
 
 <span

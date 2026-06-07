@@ -34,10 +34,11 @@
 		<h1 class="section-title">{title}</h1>
 	{/if}
 
+	{#if bgImage}
+		<img src={bgImage} alt="" class="section-image" />
+	{/if}
+
 	<div class="section-body">
-		{#if bgImage}
-			<img src={bgImage} alt="" class="section-image" />
-		{/if}
 		{@render children?.()}
 	</div>
 </div>
@@ -84,8 +85,26 @@
 
 		/* Body container (positioning context for absolutely positioned children like section-image) */
 		.section-body {
-			margin-bottom: 100px;
+			margin-bottom: 80px;
 			position: relative;
+
+			:global {
+				p {
+					margin-top: 2em;
+					margin-bottom: 1em;
+				}
+
+				p:first-of-type {
+					margin-top: 0;
+				}
+
+				h2 {
+					font-family: var(--font-dl-body);
+					font-size: 1.5rem;
+					font-weight: 500;
+					margin-top: 1.5em;
+				}
+			}
 		}
 
 		/* Optional bg image treatment (for pages like lymphaticSystem) */

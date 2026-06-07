@@ -13,14 +13,7 @@ export const FULL_ADDRESS = '224 S Main Street, Ste 205, Centerville, UT 84014';
 
 export const TRISH_PORTRAIT = '/assets/trish-170x228.jpg';
 
-export type NavItem = {
-	label: string;
-	path: string;
-	icon: string;
-	children?: NavItem[] | null;
-};
-
-export const nav: NavItem[] = [
+export const nav = [
 	{
 		label: 'Home',
 		path: '/',
@@ -96,7 +89,9 @@ export const nav: NavItem[] = [
 		icon: 'pin_drop',
 		children: null
 	}
-];
+] as const;
+
+export type NavItem = (typeof nav)[number];
 
 export const services = [
 	{
@@ -143,7 +138,7 @@ export type ServiceRouteName = Service['routeName'];
 export const aboutNav = [
 	{ title: 'Trish Romano, CLT', routeName: 'trishromano' },
 	{ title: 'The Lymphatic System', routeName: 'lymphaticSystem' }
-];
+] as const;
 
 /** Helper to get a service by routeName.
  *  Parameter is narrowed to the known literal route names (from the as const array).
