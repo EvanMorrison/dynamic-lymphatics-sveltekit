@@ -1,6 +1,5 @@
 <script lang="ts">
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
 	import { SITE_NAME } from '$lib/data/site';
 	import Heading from '$lib/components/Heading.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
@@ -31,7 +30,7 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<link rel="icon" href="/assets/favicon.svg" />
 	<title>{SITE_NAME}</title>
 	<meta
 		name="description"
