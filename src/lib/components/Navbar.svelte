@@ -78,6 +78,34 @@
 	function handleNavClick() {
 		if (isDrawerOpen) closeDrawer();
 	}
+
+	/**
+	 * Edge-aware positioning for desktop dropdowns.
+	 * Keeps the menu left-aligned (relative to its trigger) in most cases,
+	 * but flips it to right-aligned if it would overflow the right edge of the viewport.
+	 */
+	function alignDropdown(node: HTMLElement) {
+		// Measure after the browser has painted the element
+		requestAnimationFrame(() => {
+			const rect = node.getBoundingClientRect();
+
+			// If the right edge is off-screen (with a small safety margin)
+			if (rect.right > window.innerWidth - 12) {
+				node.style.left = 'auto';
+				node.style.right = '0';
+			} else {
+				// Ensure clean state if it was previously flipped
+				node.style.left = '';
+				node.style.right = '';
+			}
+		});
+
+		return {
+			destroy() {
+				// Element is removed from DOM when hover ends; no cleanup needed
+			}
+		};
+	}
 </script>
 
 <nav
@@ -144,6 +172,7 @@
 										tabindex="-1"
 										class="absolute left-0 z-30 mt-1 min-w-55 overflow-hidden rounded bg-white shadow-lg ring-1 ring-black/5"
 										style:max-height="320px"
+										use:alignDropdown
 										onmouseenter={() => setHover(item.label)}
 										onmouseleave={handleMouseLeave}
 									>
