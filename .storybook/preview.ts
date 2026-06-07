@@ -1,5 +1,10 @@
 import type { Preview } from '@storybook/sveltekit'
 
+// Import global styles so that custom classes like .section, .section-title,
+// .section-body etc. (from the migration of the original design) render correctly
+// inside Storybook previews.
+import '../src/routes/layout.css';
+
 const preview: Preview = {
   parameters: {
     controls: {
