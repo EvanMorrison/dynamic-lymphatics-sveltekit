@@ -1,0 +1,7 @@
+# Redirect default Netlify subdomain to primary domain
+# (preserved from original Next.js deployment for identical public behavior)
+https://dynamiclymphatics-next-js.netlify.com/* https://www.dynamiclymphatics.com/:splat 301!
+
+# Note: SvelteKit + @sveltejs/adapter-netlify automatically handles
+# SPA fallback, prerendered pages, and server function routing.
+# Add any additional custom redirects below if needed in the future.
