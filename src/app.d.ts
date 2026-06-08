@@ -13,6 +13,11 @@ import type {} from './mdx.d.ts';
 // so this official SvelteKit file can keep its required `export {};`.
 
 declare global {
+	interface Window {
+		dataLayer: Array<[string, ...unknown[]]>;
+		gtag?: (...args: unknown[]) => void;
+	}
+
 	namespace App {
 		// interface Error {}
 		// interface Locals {}
