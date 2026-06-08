@@ -33,7 +33,6 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href="/assets/favicon.svg" />
 	<title>{SITE_NAME}</title>
 	<meta
 		name="description"
