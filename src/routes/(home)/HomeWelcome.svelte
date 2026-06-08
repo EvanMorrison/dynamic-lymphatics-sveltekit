@@ -38,6 +38,12 @@
 				color: #0066cc;
 				text-decoration: underline;
 			}
+
+			@media (max-width: 500px) {
+				h1 {
+					font-size: 2rem;
+				}
+			}
 		}
 	}
 </style>
