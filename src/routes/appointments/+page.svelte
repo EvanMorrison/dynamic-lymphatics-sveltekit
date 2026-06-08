@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Section from '$lib/components/Section.svelte';
-	import Content from '../content/appointments.mdx';
+	import Content from '../../content/appointments.mdx';
 
 	let message = $state({
 		name: '',
