@@ -38,12 +38,10 @@
 	/>
 </svelte:head>
 
-<!-- 
-	Heading reserves ~150px of top space and contains the large transforming brand.
-	Navbar is fixed on top and reacts to the same scrollPosition.
--->
-<Heading position={scrollPosition} />
-<Navbar position={scrollPosition} />
+<div class="h-150">
+	<Heading position={scrollPosition} />
+	<Navbar position={scrollPosition} />
+</div>
 
 {@render children()}
 

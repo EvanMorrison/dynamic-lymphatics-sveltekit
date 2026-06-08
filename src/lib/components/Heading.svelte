@@ -21,14 +21,14 @@
 	const opacity = $derived(clamped >= 0.999 ? 0 : 1);
 </script>
 
-<div class="mx-auto flex h-150 max-w-7xl flex-row" aria-hidden="true">
+<div class="mx-auto flex h-25 max-w-7xl flex-row" aria-hidden="true">
 	<!-- 
 		The fixed brand that transforms with scroll.
 		z-[-1] so the big title sits "behind" the fixed navbar visually at the start.
 		On scroll it shrinks and moves toward the top-left navbar area.
 	-->
 	<div
-		class="fixed z-[-1] ml-[110px] min-w-[7em] origin-[-100px_top] transition-all duration-200 ease-out max-[550px]:ml-[20px] max-[550px]:text-[70%]"
+		class="fixed top-0 z-[-1] ml-27.5 flex h-25 min-w-[7em] origin-[-100px_top] flex-col justify-end transition-all duration-200 ease-out max-[550px]:ml-5 max-[550px]:text-[70%]"
 		style:transform
 		style:opacity
 	>
