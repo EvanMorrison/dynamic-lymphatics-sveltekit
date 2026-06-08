@@ -3,8 +3,11 @@
 	import { SITE_NAME } from '$lib/data/site';
 	import Heading from '$lib/components/Heading.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
+	import GoogleAnalytics from '$lib/components/GoogleAnalytics.svelte';
 
 	let { children } = $props();
+
+	const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 
 	// Scroll position (0 at top → 1 after ~50px scroll). Owned here so both
 	// the transforming Heading and the fixed Navbar can react.
@@ -38,12 +41,14 @@
 	/>
 </svelte:head>
 
-<!-- 
-	Heading reserves ~150px of top space and contains the large transforming brand.
-	Navbar is fixed on top and reacts to the same scrollPosition.
--->
-<Heading position={scrollPosition} />
-<Navbar position={scrollPosition} />
+<div class="h-150">
+	<Heading position={scrollPosition} />
+	<Navbar position={scrollPosition} />
+</div>
+
+{#if GA_MEASUREMENT_ID}
+	<GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
+{/if}
 
 {@render children()}
 

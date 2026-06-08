@@ -106,13 +106,13 @@
 </script>
 
 <nav
-	class="fixed top-0 z-10 flex h-25 w-full items-center transition-all duration-200"
+	class="fixed top-0 z-10 flex h-25 w-full items-end py-2 transition-all duration-200"
 	style:background-color={navBg}
 	style:box-shadow={navShadow}
 	style:padding-left="12px"
 	style:padding-right="12px"
 >
-	<div class="mx-auto flex w-full max-w-7xl items-center justify-between">
+	<div class="mx-auto flex h-full w-full max-w-7xl items-center justify-between">
 		<!-- Small brand that fades in when fully scrolled (replaces the big shrinking heading) -->
 		<div
 			class="flex items-baseline transition-opacity duration-200"
@@ -120,17 +120,17 @@
 			class:opacity-100={isScrolled}
 		>
 			<div class="flex flex-col">
-				<div class="font-dl-title text-[2.25rem] leading-none text-white">
+				<div class="fon font-dl-title text-[2.25rem] leading-none font-bold text-white">
 					{SITE_NAME}
 				</div>
-				<div class="pl-1.5 font-dl-body text-sm text-white/90">
+				<div class="pl-1.5 font-dl-body text-white/90">
 					{TAGLINE}
 				</div>
 			</div>
 		</div>
 
-		<!-- Mobile/narrow view Call text - left aligned to match old site layout.
-		     Hidden below 460px and only shown after the page has been scrolled (matching original behavior). -->
+		<!-- Mobile/narrow view Call text - left aligned.
+		     Hidden below 460px and only shown after the page has been scrolled. -->
 		<div
 			class={`text-sm transition-all duration-200 max-[460px]:hidden lg:hidden ${phoneClass}`}
 			class:opacity-0={!isScrolled}
@@ -140,11 +140,11 @@
 		</div>
 
 		<!-- Right side -->
-		<div class="flex items-start gap-2">
-			<!-- Desktop: Call stacked above the horizontal nav menu (only after scrolling, per original) -->
-			<div class="hidden flex-col items-end lg:flex">
+		<div class="flex h-full items-start justify-between gap-2">
+			<!-- Desktop: Call stacked above the horizontal nav menu (only after scrolling) -->
+			<div class="hidden h-full flex-col items-start justify-between lg:flex">
 				<div
-					class={`mb-px text-[0.9rem] leading-tight transition-all duration-200 ${phoneClass}`}
+					class={`pl-3 text-lg leading-tight transition-all duration-200 ${phoneClass}`}
 					class:opacity-0={!isScrolled}
 					class:opacity-100={isScrolled}
 					class:mb-0={!isScrolled}
@@ -154,9 +154,9 @@
 					Call: {PHONE}
 				</div>
 
-				<!-- Desktop nav (hidden below lg / ~1024px). No top-level icons on desktop (per original). -->
+				<!-- Desktop nav (hidden below lg / ~1024px). No top-level icons on desktop. -->
 				<div class="hidden lg:block">
-					<ul class={`flex list-none items-center gap-1 text-sm ${navTextClass}`}>
+					<ul class={`flex list-none items-center gap-1 ${navTextClass}`}>
 						{#each nav as item (item.path)}
 							<li
 								class="relative"
@@ -165,7 +165,7 @@
 							>
 								<a
 									href={resolve(item.path)}
-									class={`flex items-center gap-1 rounded px-3 py-1.5 transition-colors hover:bg-dl-primary-lt/30 ${isActive(item) ? (isScrolled ? 'bg-white/20' : 'bg-dl-primary-lt/50') : ''}`}
+									class={`flex items-center gap-1 rounded px-3 py-1.5 transition-colors hover:bg-dl-primary-lt/30 ${isActive(item) ? 'bg-dl-primary-lt/50' : ''}`}
 									onclick={handleNavClick}
 								>
 									<!-- Icons hidden for main nav items on desktop; shown on mobile and inside dropdowns -->
@@ -238,7 +238,7 @@
 	<!-- Drawer header -->
 	<div class="flex items-center bg-dl-primary/80 p-3 text-white">
 		<div class="flex items-center gap-3">
-			<div class="font-dl-title text-2xl">Dynamic Lymphatics</div>
+			<div class="font-dl-title text-3xl">Dynamic Lymphatics</div>
 		</div>
 	</div>
 
