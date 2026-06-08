@@ -20,13 +20,17 @@
 			li {
 				font-size: 1.15rem;
 				margin-bottom: 0.25rem;
+				padding-left: 1.75em;
+				position: relative;
 
 				&::before {
 					content: 'spa';
 					font-family: 'Material Symbols Rounded';
 					font-variation-settings: 'FILL' 1;
-					vertical-align: middle;
-					margin-right: 10px;
+					position: absolute;
+					left: 0;
+					top: 0.1em;
+					line-height: 1;
 				}
 			}
 

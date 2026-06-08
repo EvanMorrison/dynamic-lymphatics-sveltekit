@@ -98,7 +98,7 @@
 			}
 
 			h2 {
-				font-size: 24px;
+				font-size: 26px;
 				text-align: center;
 				font-weight: 300;
 				color: #ffffff;
@@ -106,8 +106,8 @@
 
 			@media screen and (max-width: 500px) {
 				h2 {
-					font-size: 12px;
-					font-weight: 100;
+					font-size: 1.1rem;
+					font-weight: 200;
 				}
 			}
 		}
