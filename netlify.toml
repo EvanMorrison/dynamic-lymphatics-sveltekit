@@ -1,0 +1,12 @@
+[build]
+  command = "pnpm build"
+  publish = "build"
+
+[functions]
+  # The adapter-netlify outputs the serverless functions here.
+  # Netlify automatically detects .netlify/functions-internal for adapter-generated functions.
+  directory = ".netlify/functions-internal"
+
+# Note: Additional [[redirects]] or [[headers]] can be added here.
+# The root _redirects file (for old domain redirect) is also respected by Netlify.
+# The adapter will generate its own _redirects and _headers inside the publish directory for SvelteKit routing and caching.

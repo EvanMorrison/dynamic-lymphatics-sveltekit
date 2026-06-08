@@ -20,7 +20,7 @@
 		flex-flow: wrap;
 		position: relative;
 		min-height: 500px;
-		width: 95%;
+		width: 90%;
 		max-width: 1280px;
 		margin: 20px auto;
 		align-items: center;
