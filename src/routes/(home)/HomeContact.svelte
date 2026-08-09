@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import Icon from '$lib/components/Icon.svelte';
-	import { PHONE, EMAIL, TRISH_PORTRAIT } from '$lib/data/site';
+	import { PHONE, TRISH_PORTRAIT } from '$lib/data/site';
 </script>
 
 <div class="contact-grid">
@@ -19,11 +19,8 @@
 	     - Desktop: under the name (right column, beside lower photo)
 	     - Mobile: full width below photo + name -->
 	<div class="details contact-details">
-		<Icon name="call" size={18} />
-		<div>{PHONE}</div>
-
-		<Icon name="mail_outline" size={18} />
-		<a href="mailto:{EMAIL}">{EMAIL}</a>
+		<Icon name="perm_phone_msg" size={18} title="text or call" />
+		<div title="text or call">{PHONE}</div>
 
 		<Icon name="pin_drop" size={18} />
 		<div>224 S Main Street, Suite 205</div>
