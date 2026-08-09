@@ -14,11 +14,13 @@
 	let {
 		name,
 		size = 24,
-		class: className = ''
+		class: className = '',
+		...rest
 	}: {
 		name: string;
 		size?: number;
 		class?: string;
+		title?: string;
 	} = $props();
 
 	const isOutline = $derived(name.endsWith('_outline'));
@@ -27,6 +29,7 @@
 </script>
 
 <span
+	{...rest}
 	class="material-symbols-rounded align-middle {className}"
 	style:font-size="{size}px"
 	style:font-variation-settings={fontVariationSettings}
